@@ -6,10 +6,13 @@ async def add_media(message, media_type):
 
     if len(message.command) < 2:
         return await message.reply_text(
-            f"❌ Usage:\n/add{media_type} title"
+            f"❌ Usage:\n/add{media_type} title | genre (optional)"
         )
 
-    title = " ".join(message.command[1:])
+    parts = message.text.split(" ", 2)
+
+    title = parts[1]
+    genre = parts[2].lower() if len(parts) > 2 else "unknown"
 
     already = await media_collection.find_one(
         {
@@ -27,6 +30,8 @@ async def add_media(message, media_type):
         "user_id": message.from_user.id,
         "title": title,
         "type": media_type,
+        "genre": genre,
+
         "favorite": False,
         "note": "",
         "status": "Plan To Watch",
@@ -36,7 +41,13 @@ async def add_media(message, media_type):
     await media_collection.insert_one(data)
 
     await message.reply_text(
-        f"✅ Added Successfully\n\n🎬 {title}"
+        f"""
+✅ Added Successfully
+
+🎬 Title : {title}
+🎭 Genre : {genre}
+📂 Type : {media_type}
+"""
     )
 
 
