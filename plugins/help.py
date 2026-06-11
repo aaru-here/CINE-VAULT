@@ -19,5 +19,10 @@ HELP_TEXT = """
 ➻ /list
 ➻ /remove
 
+❤️ Favorite Commands
+
+➻ /favorite
+➻ /favorites
+
 ━━━━━━━━━━━━━━━━━━
 """
