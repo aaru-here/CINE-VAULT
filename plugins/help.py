@@ -35,5 +35,11 @@ HELP_TEXT = """
 ➻ /random
 ➻ /stats
 
+🏆 Advanced Commands
+
+➻ /achievements
+➻ /recommend
+➻ /export
+
 ━━━━━━━━━━━━━━━━━━
 """
