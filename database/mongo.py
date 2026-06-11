@@ -1,1 +1,8 @@
-# Phase 1 Part 2
+from motor.motor_asyncio import AsyncIOMotorClient
+from config import MONGO_URI
+
+mongo_client = AsyncIOMotorClient(MONGO_URI)
+
+db = mongo_client["CineVault"]
+
+media_collection = db["media"]
