@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from utils.tmdb import search_media
+from utils.tmdb import search_media, get_trailer
 from database.mongo import media_collection
 
 
@@ -31,6 +31,7 @@ async def details(_, message):
         + result["poster_path"]
     )
 
+    # 🔍 user data from DB
     user_data = await media_collection.find_one(
         {
             "user_id": message.from_user.id,
@@ -38,21 +39,16 @@ async def details(_, message):
         }
     )
 
-    favorite = "Yes ❤️"
+    favorite = "No 🤍"
     status = "Unknown"
     note = "No note."
     rewatch_count = 0
 
     if user_data:
-        favorite = (
-            "Yes ❤️"
-            if user_data["favorite"]
-            else "No 🤍"
-        )
-
-        status = user_data["status"]
-        note = user_data["note"]
-        rewatch_count = user_data["rewatch_count"]
+        favorite = "Yes ❤️" if user_data.get("favorite") else "No 🤍"
+        status = user_data.get("status", "Unknown")
+        note = user_data.get("note", "No note.")
+        rewatch_count = user_data.get("rewatch_count", 0)
 
     caption = f"""
 ━━━━━━━━━━━━━━━━━━
@@ -76,15 +72,22 @@ async def details(_, message):
 {overview}
 """
 
+    # 🎥 REAL TRAILER FETCH
+    trailer_url = await get_trailer(title)
+
     buttons = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
                     "🎥 Trailer",
-                    url="https://youtube.com/results?search_query="
-                    + title
-                    + " trailer"
+                    url=trailer_url
+                    if trailer_url
+                    else f"https://youtube.com/results?search_query={title}+trailer"
                 )
+            ],
+            [
+                InlineKeyboardButton("⭐ IMDb", url="https://www.imdb.com"),
+                InlineKeyboardButton("📺 TMDb", url="https://www.themoviedb.org")
             ]
         ]
     )
