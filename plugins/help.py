@@ -24,5 +24,11 @@ HELP_TEXT = """
 ➻ /favorite
 ➻ /favorites
 
+📝 Personal Commands
+
+➻ /note
+➻ /status
+➻ /rewatch
+
 ━━━━━━━━━━━━━━━━━━
 """
