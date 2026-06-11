@@ -4,20 +4,12 @@ from database.mongo import media_collection
 
 async def add_media(message, media_type):
 
-    name = message.text.split(None, 1)
-
-    if len(name) < 2:
+    if len(message.command) < 2:
         return await message.reply_text(
-            f"❌ Usage:\n/{media_type} <name>"
+            f"❌ Usage:\n/add{media_type} title"
         )
 
-    title = name[1]
-
-    data = {
-        "user_id": message.from_user.id,
-        "title": title,
-        "type": media_type
-    }
+    title = " ".join(message.command[1:])
 
     already = await media_collection.find_one(
         {
@@ -31,10 +23,20 @@ async def add_media(message, media_type):
             "⚠️ Already exists in your collection."
         )
 
+    data = {
+        "user_id": message.from_user.id,
+        "title": title,
+        "type": media_type,
+        "favorite": False,
+        "note": "",
+        "status": "Plan To Watch",
+        "rewatch_count": 0
+    }
+
     await media_collection.insert_one(data)
 
     await message.reply_text(
-        f"✅ Successfully added:\n\n🎬 {title}"
+        f"✅ Added Successfully\n\n🎬 {title}"
     )
 
 
