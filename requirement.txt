@@ -1,7 +1,6 @@
-pyrofork
+pyrogram==2.0.106
 tgcrypto
-motor
 aiohttp
-python-dotenv
-dnspython
-Pillow
+pymongo
+pillow
+flask
