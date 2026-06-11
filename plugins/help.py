@@ -30,5 +30,10 @@ HELP_TEXT = """
 ➻ /status
 ➻ /rewatch
 
+🎲 Fun Commands
+
+➻ /random
+➻ /stats
+
 ━━━━━━━━━━━━━━━━━━
 """
