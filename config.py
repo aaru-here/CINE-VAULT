@@ -10,6 +10,6 @@ BOT_TOKEN = getenv("YOUR_BOT_TOKEN")
 
 MONGO_URI = getenv("YOUR_MONGO_URI")
 
-TMDB_API_KEY = getenv("408ea9fa3a07ca9e4b51b390c17c7de8")
+TMDB_API_KEY = getenv("YOUR_TMDB_API_KEY")
 
-OWNER_ID = int(getenv("8789995472"))
+OWNER_ID = int(getenv("OWNER_ID"))
