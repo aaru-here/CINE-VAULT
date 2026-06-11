@@ -2,12 +2,12 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 def create_collection_image(
-        movies,
-        series,
-        anime,
-        favorites,
-        items,
-        page
+    movies,
+    series,
+    anime,
+    favorites,
+    items,
+    page
 ):
 
     width = 1080
@@ -21,54 +21,47 @@ def create_collection_image(
 
     draw = ImageDraw.Draw(image)
 
-    title_font = ImageFont.truetype(
-        "fonts/Poppins-Bold.ttf",
-        40
-    )
-
-    normal_font = ImageFont.truetype(
-        "fonts/Poppins-Regular.ttf",
-        28
-    )
+    title_font = ImageFont.load_default()
+    normal_font = ImageFont.load_default()
 
     green = (0, 255, 127)
 
     draw.text(
-        (250, 40),
-        "📚 CINEVAULT COLLECTION",
+        (330, 40),
+        "CINEVAULT COLLECTION",
         fill=green,
         font=title_font
     )
 
     draw.text(
         (70, 140),
-        f"🎬 Movies : {movies}",
+        f"Movies : {movies}",
         fill="white",
         font=normal_font
     )
 
     draw.text(
-        (70, 200),
-        f"📺 Series : {series}",
+        (70, 190),
+        f"Series : {series}",
         fill="white",
         font=normal_font
     )
 
     draw.text(
-        (70, 260),
-        f"🌸 Anime : {anime}",
+        (70, 240),
+        f"Anime : {anime}",
         fill="white",
         font=normal_font
     )
 
     draw.text(
-        (70, 320),
-        f"❤️ Favorites : {favorites}",
+        (70, 290),
+        f"Favorites : {favorites}",
         fill="white",
         font=normal_font
     )
 
-    y = 450
+    y = 400
 
     for item in items:
 
@@ -79,10 +72,10 @@ def create_collection_image(
             font=normal_font
         )
 
-        y += 55
+        y += 45
 
     draw.text(
-        (430, 1250),
+        (450, 1250),
         f"Page {page}",
         fill=green,
         font=normal_font
