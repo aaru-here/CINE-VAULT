@@ -1,15 +1,8 @@
-from os import getenv
-from dotenv import load_dotenv
+import os
 
-load_dotenv()
-
-API_ID = int(getenv("YOUR_API_ID"))
-API_HASH = getenv("YOUR_API_HASH")
-
-BOT_TOKEN = getenv("YOUR_BOT_TOKEN")
-
-MONGO_URI = getenv("YOUR_MONGO_URI")
-
-TMDB_API_KEY = getenv("YOUR_TMDB_API_KEY")
-
-OWNER_ID = int(getenv("OWNER_ID"))
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+API_ID = os.getenv("API_ID")
+API_HASH = os.getenv("API_HASH")
+MONGO_URL = os.getenv("MONGO_URL")
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+OWNER_ID = os.getenv("OWNER_ID")
