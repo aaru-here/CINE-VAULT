@@ -4,6 +4,7 @@ from config import TMDB_API_KEY
 BASE_URL = "https://api.themoviedb.org/3"
 
 
+# 🔍 SEARCH MOVIE / SERIES
 async def search_media(query):
 
     url = (
@@ -24,7 +25,7 @@ async def search_media(query):
     return results[0]
 
 
-# 🎥 TRAILER FUNCTION (FIXED)
+# 🎥 GET TRAILER
 async def get_trailer(title: str):
 
     search_url = (
